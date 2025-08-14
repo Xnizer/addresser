@@ -5,6 +5,7 @@ declare module "addresser" {
 	export function cities(): IStateCities;
 
 	export interface IParsedAddress {
+		formattedAddress: string;
 		zipCode: string;
 		stateAbbreviation: string;
 		stateName: string;
