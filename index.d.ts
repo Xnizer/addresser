@@ -1,4 +1,4 @@
-declare module "addresser" {
+declare module "@xnizer/addresser" {
 
 	export function parseAddress(addressString: string, config?: ParseConfig): IParsedAddress;
 	export function getRandomCity(): { city: string, state: string};
