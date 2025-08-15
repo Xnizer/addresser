@@ -1,8 +1,12 @@
 declare module "addresser" {
 
-	export function parseAddress(addressString: string): IParsedAddress;
+	export function parseAddress(addressString: string, config?: ParseConfig): IParsedAddress;
 	export function getRandomCity(): { city: string, state: string};
 	export function cities(): IStateCities;
+
+	export type ParseConfig = {
+		doNotAbbreviateStreetSuffix: boolean;
+	}
 
 	export interface IParsedAddress {
 		formattedAddress: string;

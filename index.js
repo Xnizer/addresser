@@ -86,7 +86,7 @@ var usLine2Prefixes = {
 }
 
 module.exports = {
-  parseAddress: function(address) {
+  parseAddress: function(address, config = undefined) {
     // Validate a non-empty string was passed
     if (!address) {
       throw 'Argument must be a non-empty string.';
@@ -268,7 +268,11 @@ module.exports = {
         if (streetParts.length > 2) {
           // Remove '.' if it follows streetSuffix
           streetParts[streetParts.length-1] = streetParts[streetParts.length-1].replace(/\.$/, '');
-          result.streetSuffix = toTitleCase(usStreetTypes[streetParts[streetParts.length-1].toLowerCase()]);
+          result.streetSuffix = toTitleCase(
+            config?.doNotAbbreviateStreetSuffix === true ?
+              streetParts[streetParts.length-1].toLowerCase() :
+              usStreetTypes[streetParts[streetParts.length-1].toLowerCase()]
+          );
         }
         
         result.streetName = streetParts[1]; // Assume street name is everything in the middle
